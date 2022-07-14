@@ -6,6 +6,7 @@ const weatherCont = document.querySelector('.weather')
 const tempertureCont = document.querySelector('.temp');
 const humidityCont = document.querySelector('.humidity');
 const seaLevelCont = document.querySelector('.sea-level');
+const windCont = document.querySelector('.wind');
 
 // fetch api city
 function loadWeather(cityName){
@@ -17,10 +18,11 @@ function loadWeather(cityName){
         console.log( response);
         console.log(response.name);
         cityNameCont.textContent = response.name;
-        weatherCont.textContent = 'Weather: ' + JSON.stringify(response.weather[0].main);
+        weatherCont.textContent = 'Weather: ' + JSON.stringify(response.weather[0].description);
         tempertureCont.textContent = 'Temperature: '+ JSON.stringify(response.main.temp) + '℃';
         humidityCont.textContent = 'Humidity: ' + JSON.stringify(response.main.humidity);
-        seaLevelCont.textContent = 'Altitude: ' + JSON.stringify(response.main.sea_level)+'m';
+        seaLevelCont.textContent = 'Altitude: ' + JSON.stringify(response.main.sea_level)+' meter';
+        windCont.textContent = 'Wind: ' +  JSON.stringify(response.wind.speed) + ' km/h';
     })
     .catch(function(error){
         alert('unknown city');
