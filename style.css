@@ -1,53 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
 
 body{
-    background-color: rgb(50,50,50);
+    background-color: #cbd5e1;
     display: grid;
     grid-template-rows: 2fr 1fr 7fr;
     height: 100vh;
     margin: 0;
     font-family: 'Merriweather', serif;
     font-weight: 500;
-    color: white;
+    color: black;
+    transition: background-color 1s;
 }
 
 body>div{
-    border: 1px solid red;
+    border: 0px solid red;
 }
 
 .header{
     display: flex;
-    padding-top: 40px;
+    padding-top: 30px;
     justify-content: center;
     font-size: 35pt;
 }
 
 .inputDiv{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    opacity: 0.8;
     
 }
+
+    .cont1{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .cont2{
+        display: flex;
+    }
         label{
             font-size: 15pt;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         #cityInput{
-            padding-top: 5px;
+           
             border-radius: 3px;
             background-color: rgb(100,100,100);
             color: white;
             font-size: 15pt;
+            border: none;
         }
 
         #searchBtn{
-            border-radius: 10px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1px;
+            padding: 3px;
+            border: none;
         }
 
 .main{
@@ -55,18 +68,19 @@ body>div{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 30px;
     gap: 25px;
 
 }
 
 .main>div{
-    border: 1px solid red;
+    border: 0px solid red;
 }
 
     .city-name{
         font-size: 20pt;
-        
+        padding: 10px;
+        font-weight: 500;
         
     }
 
@@ -75,4 +89,11 @@ body>div{
         grid-template-rows: repeat(4,1fr);
         gap: 6px;
         background-color: rgb(40,40,40);
+        padding: 20px;
+        color: aliceblue;
+        opacity: 0.6;
+    }
+
+    .weather {
+        text-transform:capitalize;
     }
