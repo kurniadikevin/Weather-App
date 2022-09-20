@@ -1,14 +1,19 @@
 const mainContent = document.querySelector('.main');
 const cityNameCont = document.querySelector('.city-name');
 const cityContent = document.querySelector('.city-content');
+const countryCode = document.querySelector('.country-code');
 
-const weatherCont = document.querySelector('.weather')
+const weatherCont = document.querySelector('.weather');
 const tempertureCont = document.querySelector('.temp');
 const minTemp = document.querySelector('.min-temp');
 const maxTemp = document.querySelector('.max-temp');
 const humidityCont = document.querySelector('.humidity');
 const seaLevelCont = document.querySelector('.sea-level');
 const windCont = document.querySelector('.wind');
+
+//new data
+const localTime = document.querySelector('.local-time');
+
 
 // fetch api city
 function loadWeather(cityName){
@@ -19,25 +24,45 @@ function loadWeather(cityName){
     .then(function(response){
         console.log( response);
         console.log(response.name);
+
+         // get gmt time 
+        // in seconds
+        const gmtTimestamp = new Date().getTime();
+        console.log(gmtTimestamp);
+        const gmtPlus = JSON.stringify(response.timezone);
+        console.log(gmtPlus);
+        console.log(gmtPlus/3600)
+        const locationTime = function(){
+            if( (gmtPlus/3600) > 0){
+                return '+' + gmtPlus/3600;
+            } else{
+                return  gmtPlus/3600;
+            }
+        }
+
+
         cityNameCont.textContent = response.name;
-        weatherCont.textContent = 'Weather: ' + (JSON.stringify(response.weather[0].description)).replace(/"/g," ");
-        tempertureCont.textContent = 'Temperature: '+ JSON.stringify(response.main.temp) + '℃';
-        minTemp.textContent = 'Min: ' + JSON.stringify(response.main.temp_min) + '℃';
-        maxTemp.textContent = 'Max: ' + JSON.stringify(response.main.temp_max) + '℃';
-        humidityCont.textContent = 'Humidity: ' + JSON.stringify(response.main.humidity);
-        seaLevelCont.textContent = 'Altitude: ' + JSON.stringify(response.main.sea_level)+' meter';
-        windCont.textContent = 'Wind: ' +  JSON.stringify(response.wind.speed) + ' km/h';
+        weatherCont.textContent =   (JSON.stringify(response.weather[0].description)).replace(/"/g," ");
+        tempertureCont.textContent =  JSON.stringify(response.main.temp) + '℃';
+        minTemp.textContent = 'Min. ' + JSON.stringify(response.main.temp_min) + '℃';
+        maxTemp.textContent = 'Max. ' + JSON.stringify(response.main.temp_max) + '℃';
+        humidityCont.textContent = 'Humidity. ' + JSON.stringify(response.main.humidity);
+        seaLevelCont.textContent = 'Altitude. ' + JSON.stringify(response.main.sea_level)+' meter';
+        windCont.textContent = 'Wind. ' +  JSON.stringify(response.wind.speed) + ' km/h';
+        localTime.textContent ='Timezone. GMT '+ locationTime();
+        countryCode.textContent= response.sys.country;
+
 
         function bgChange(){
             const body = document.querySelector('body');
             if(JSON.stringify(response.main.temp) < 30 && JSON.stringify(response.main.temp) > 20){
-                body.style.backgroundColor= '#bae6fd';
+               // body.style.backgroundImage= '#bae6fd';
             }else if( JSON.stringify(response.main.temp) < 20){
-                body.style.backgroundColor = '#e0f2fe';
+                //body.style.backgroundImage = '#e0f2fe';
             }  else if( JSON.stringify(response.main.temp) > 35){
-                body.style.backgroundColor = '#ffedd5';
+                //body.style.backgroundImage = '#ffedd5';
             }
-             else{ body.style.backgroundColor='#cbd5e1';}
+             else{ /* body.style.backgroundColor='#cbd5e1'; */}
         };
         bgChange();
     })
@@ -52,9 +77,15 @@ loadWeather('bandung');//
 const cityInput = document.querySelector('#cityInput');
 const searchBtn = document.querySelector('#searchBtn');
 
+cityInput.style.visibility='hidden';
+
 searchBtn.addEventListener('click',function(){
+    cityInput.style.visibility='visible';
+    if(cityInput.value){
      loadWeather(cityInput.value);
      cityInput.value='';
+     cityInput.style.visibility='hidden';
+    }
     });
 
 function bgChange(){
@@ -63,4 +94,17 @@ function bgChange(){
         body.style.backgroundColor='blue';
     }
 };
+
+
+//manage time
+const dateTime = document.querySelector('.date-time');
+const dateDate =document.querySelector('.date-date');
+
+let time;
+function setTime(){
+    let today = new Date();
+     dateTime.textContent=today.toLocaleTimeString();
+     dateDate.textContent= today.toDateString();
+} 
+setInterval(setTime,1000);
 

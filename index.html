@@ -11,26 +11,13 @@
 </head>
 <body>
     <div class="header">
-        <div class="current-date">
-            <div class="date-time">Time 00 00</div>
-            <div class="date-date">Senin 4 Agustus 1923</div>
+        <div class="current-date"> 
+            <div class="date-date"></div>
+            <div class="date-time"></div>
         </div>
 
         <div class="header-right">
-                <div class="app-name">Weather report</div>
-
-                <div class="inputDiv">
-                    <div class="cont1">
-                        <label for="cityInput"></label>
-                    </div>
-                    <div class="cont2">
-                         <input type="text" id="cityInput" placeholder="City Name">
-                         <button id="searchBtn"><span class="material-symbols-outlined">
-                        search
-                        </span>
-                        </button>
-                    </div>
-                </div>
+                <div class="app-name">Weather App</div>
         </div>
     </div>
 
@@ -39,16 +26,46 @@
     
     <div class="main">
        
-        <div class="city-content">
+        <div class="main-col1">
             <div class="city-name">City Name</div>
-            <div class="weather"></div>
+            <div class="country-code"></div>
             <div class="temp"> </div>
-            <div class="min-temp"></div>
-            <div class="max-temp"></div>
-            <div class="humidity"> </div>
-            <div class="sea-level"> </div>
-            <div class="wind"></div>
         </div>
+
+        <div class="main-col2">
+            <div class="main-head">
+
+                <div class="weather"></div>
+
+                <div class="inputDiv">
+                         <input type="text" id="cityInput" placeholder="City Name" >
+                         <button id="searchBtn">
+                            <span class="material-symbols-outlined">
+                             search</span>
+                        </button>
+               </div>
+
+            </div>
+
+            <div class="main-info">
+                <div class="top-info">   
+                    <div class="min-temp"></div>
+                    <div class="max-temp"></div>
+                    <div class="humidity"> </div>
+                </div>
+
+                <div class="bottom-info">
+                    <div class="sea-level"> </div>
+                    <div class="wind"></div>
+                    <div class="local-time"></div>
+                </div>
+            </div>
+            
+
+        </div>
+            
+          
+        
     </div>
     <script src="./script.js"></script>
 </body>
