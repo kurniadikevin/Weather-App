@@ -1,27 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
 
 body{
-    background-color: #cbd5e1;
+    background-color: rgb(100,100,100);
     display: grid;
-    grid-template-rows: 2fr 1fr 7fr;
+    grid-template-rows: 2fr  8fr;
     height: 100vh;
     margin: 0;
     font-family: 'Merriweather', serif;
     font-weight: 500;
     color: black;
     transition: background-color 1s;
+   
 }
 
 body>div{
-    border: 0px solid red;
+    
 }
 
 .header{
     display: flex;
     padding-top: 30px;
-    justify-content: center;
-    font-size: 35pt;
+    justify-content: space-between;
+    border: 1px solid red;
+    padding-right: 5%;
+    padding-left: 5%;
 }
+    .current-date{
+        font-size: 20pt;
+       
+    }
+
+   .app-name{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20pt;
+    font-weight: 500;
+   }
+
 
 .inputDiv{
     display: flex;
@@ -30,7 +45,8 @@ body>div{
     justify-content: center;
     gap: 10px;
     opacity: 0.8;
-    
+    border: 1px solid red;
+   
 }
 
     .cont1{
@@ -70,19 +86,22 @@ body>div{
     align-items: center;
     padding-top: 30px;
     gap: 25px;
-
+    background-color: rgb(100,100,100,0.2);
+    border-radius: 20px;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .main>div{
     border: 0px solid red;
 }
 
-    .city-name{
-        font-size: 20pt;
-        padding: 10px;
-        font-weight: 500;
-        
-    }
+.city-name{
+    font-size: 25pt;
+    padding-right: 3%;
+    font-weight: 500;
+    
+}
 
     .city-content{
         display: grid;
