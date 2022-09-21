@@ -142,8 +142,15 @@ function loadWeather(cityName){
         bgChange();
     })
     .catch(function(error){
-        alert('unknown city');
-        
+       const alertPopUp = document.querySelector('.alert-popup');
+       alertPopUp.innerHTML= 'City or Area Not Found';
+       alertPopUp.style.visibility='visible';
+
+       // automatically hidden after 3seconds
+        setTimeout(function(){
+            alertPopUp.style.visibility='hidden';  
+        },3000)
+
     })
 }
 
