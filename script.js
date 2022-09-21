@@ -25,8 +25,7 @@ function loadWeather(cityName){
         console.log( response);
         console.log(response.name);
 
-         // get gmt time 
-        // in seconds
+         // get gmt time  in seconds
         const gmtTimestamp = new Date().getTime();
         console.log(gmtTimestamp);
         const gmtPlus = JSON.stringify(response.timezone);
@@ -40,6 +39,11 @@ function loadWeather(cityName){
             }
         }
 
+        //convert country code
+        const regionNames = new Intl.DisplayNames(
+            ['en'], {type: 'region'}
+          );
+
 
         cityNameCont.textContent = response.name;
         weatherCont.textContent =   (JSON.stringify(response.weather[0].description)).replace(/"/g," ");
@@ -50,19 +54,90 @@ function loadWeather(cityName){
         seaLevelCont.textContent = 'Altitude. ' + JSON.stringify(response.main.sea_level)+' meter';
         windCont.textContent = 'Wind. ' +  JSON.stringify(response.wind.speed) + ' km/h';
         localTime.textContent ='Timezone. GMT '+ locationTime();
-        countryCode.textContent= response.sys.country;
+        countryCode.textContent=  regionNames.of(response.sys.country);
+       
 
 
         function bgChange(){
             const body = document.querySelector('body');
             if(JSON.stringify(response.main.temp) < 30 && JSON.stringify(response.main.temp) > 20){
-               // body.style.backgroundImage= '#bae6fd';
+                body.style.cssText = 
+                `background: linear-gradient(-45deg, 
+                    #fed7aa,#fffbeb,
+                    #94a3b8
+                    );
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                @keyframes gradient {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+                    50% {
+                        background-position: 100% 50%;
+                    }
+                    100% {
+                        background-position: 0% 50%;
+                    }
+                }`
             }else if( JSON.stringify(response.main.temp) < 20){
-                //body.style.backgroundImage = '#e0f2fe';
+                body.style.cssText = 
+                `background: linear-gradient(-45deg, 
+                    #334155, white, 
+                    #64748b
+                    );
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                @keyframes gradient {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+                    50% {
+                        background-position: 100% 50%;
+                    }
+                    100% {
+                        background-position: 0% 50%;
+                    }
+                }`
+                    
             }  else if( JSON.stringify(response.main.temp) > 35){
-                //body.style.backgroundImage = '#ffedd5';
+                body.style.cssText = 
+                `background: linear-gradient(-45deg, 
+                    rgb(254 249 195), rgb(254 252 232),rgb(217 119 6)
+                    );
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                @keyframes gradient {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+                    50% {
+                        background-position: 100% 50%;
+                    }
+                    100% {
+                        background-position: 0% 50%;
+                    }
+                }`
             }
-             else{ /* body.style.backgroundColor='#cbd5e1'; */}
+             else{
+                body.style.cssText = 
+                `background: linear-gradient(-45deg, 
+                    #334155, white, 
+                    #64748b
+                    );
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                @keyframes gradient {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+                    50% {
+                        background-position: 100% 50%;
+                    }
+                    100% {
+                        background-position: 0% 50%;
+                    }
+                }`
+             }
         };
         bgChange();
     })
@@ -77,14 +152,14 @@ loadWeather('bandung');//
 const cityInput = document.querySelector('#cityInput');
 const searchBtn = document.querySelector('#searchBtn');
 
-cityInput.style.visibility='hidden';
+cityInput.style.opacity='0';
 
 searchBtn.addEventListener('click',function(){
-    cityInput.style.visibility='visible';
+    cityInput.style.opacity='1';
     if(cityInput.value){
      loadWeather(cityInput.value);
      cityInput.value='';
-     cityInput.style.visibility='hidden';
+     cityInput.style.opacity='0';
     }
     });
 
