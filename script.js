@@ -63,8 +63,7 @@ function loadWeather(cityName){
             if(JSON.stringify(response.main.temp) < 30 && JSON.stringify(response.main.temp) > 20){
                 body.style.cssText = 
                 `background: linear-gradient(-45deg, 
-                    #fed7aa,#fffbeb,
-                    #94a3b8
+                   var(--cool), var(--base)
                     );
                 background-size: 400% 400%;
                 animation: gradient 15s ease infinite;
@@ -82,8 +81,7 @@ function loadWeather(cityName){
             }else if( JSON.stringify(response.main.temp) < 20){
                 body.style.cssText = 
                 `background: linear-gradient(-45deg, 
-                    #334155, white, 
-                    #64748b
+                    var(--cold), var(--base)
                     );
                 background-size: 400% 400%;
                 animation: gradient 15s ease infinite;
@@ -102,7 +100,7 @@ function loadWeather(cityName){
             }  else if( JSON.stringify(response.main.temp) > 35){
                 body.style.cssText = 
                 `background: linear-gradient(-45deg, 
-                    rgb(254 249 195), rgb(254 252 232),rgb(217 119 6)
+                  var(--hot), var(--base)
                     );
                 background-size: 400% 400%;
                 animation: gradient 15s ease infinite;
@@ -121,8 +119,7 @@ function loadWeather(cityName){
              else{
                 body.style.cssText = 
                 `background: linear-gradient(-45deg, 
-                    #334155, white, 
-                    #64748b
+                   var(--cool), var(--base)
                     );
                 background-size: 400% 400%;
                 animation: gradient 15s ease infinite;
@@ -139,7 +136,7 @@ function loadWeather(cityName){
                 }`
              }
         };
-        bgChange();
+       //bgChange();
     })
     .catch(function(error){
        const alertPopUp = document.querySelector('.alert-popup');
